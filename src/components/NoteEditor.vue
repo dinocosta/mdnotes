@@ -23,6 +23,10 @@
 
 <script>
 import firebase from 'firebase'
+import $ from 'jquery'
+import 'autogrow'
+
+$('textarea').autogrow()
 
 export default {
   name: 'note-editor',
