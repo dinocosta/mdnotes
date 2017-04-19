@@ -9,7 +9,7 @@
         a.nav-item.is-pulled-right
           button.button.is-outlined(@click='modalActive = editing || $router.push("/#")')
             i.fa.fa-fw.fa-arrow-left
-          button.button.is-danger(@click='destroyNote')
+          button.button.is-danger(@click='deleteModalActive = true')
             i.fa.fa-fw.fa-trash
           button.button.is-primary(@click='saveNote')
             i.fa.fa-fw.fa-pencil(v-show='!editing')
@@ -19,20 +19,32 @@
   button.button.is-loading.is-fullwidth(v-show='note.timestamp == null', style='border: 0')
   .note-text(v-show='!editing', v-html='mdnote')
   textarea(v-show='editing', v-model='note.text')
-  .modal(:class="{ 'is-active': modalActive }")
+  .modal(:class="{ 'is-active': modalactive }")
     .modal-background
     .modal-content
       .box
         .field
           p.control
-            | You will lose unsaved work if you leave, are you sure?
+            | you will lose unsaved work if you leave, are you sure?
         .field.is-grouped
           p.control
-            button.button.is-primary(@click='modalActive = false') Stay
+            button.button.is-primary(@click='modalactive = false') stay
           p.control
-            button.button.is-danger.is-pulled-right(@click='$router.push("/#")') Leave
-    |
-    button.modal-close(@click='modalActive = false')
+            button.button.is-danger.is-pulled-right(@click='$router.push("/#")') leave
+    button.modal-close(@click='modalactive = false')
+  .modal(:class="{ 'is-active': deleteModalActive }")
+    .modal-background
+    .modal-content
+      .box
+        .field
+          p.control
+            | Are you sure you want to delete this note?
+        .field.is-grouped
+          p.control
+            button.button.is-primary(@click='deleteModalActive = false') Cancel
+          p.control
+            button.button.is-danger.is-pulled-right(@click='destroyNote') Delete
+    button.modal-close(@click='modalactive = false')
 </template>
 
 <script>
@@ -46,7 +58,8 @@ export default {
   data () {
     return {
       editing: false,
-      modalActive: false
+      modalActive: false,
+      deleteModalActive: false
     }
   },
   created () {
