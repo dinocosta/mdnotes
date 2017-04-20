@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import fromNow from '../filters'
+import timeSince from '../filters'
 import firebase from 'firebase'
 
 export default {
@@ -51,7 +51,7 @@ export default {
       this.modalActive = false
     },
     editedTime (note) {
-      return fromNow(note.timestamp)
+      return timeSince(note.timestamp) + ' ago'
     }
   },
   computed: {
