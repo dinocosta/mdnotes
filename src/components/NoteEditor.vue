@@ -19,7 +19,7 @@
   button.button.is-loading.is-fullwidth(v-show='note.timestamp == null', style='border: 0')
   .note-text(v-show='!editing', v-html='mdnote')
   textarea(v-show='editing', v-model='note.text')
-  .modal(:class="{ 'is-active': modalactive }")
+  .modal(:class="{ 'is-active': modalActive }")
     .modal-background
     .modal-content
       .box
@@ -28,10 +28,10 @@
             | you will lose unsaved work if you leave, are you sure?
         .field.is-grouped
           p.control
-            button.button.is-primary(@click='modalactive = false') stay
+            button.button.is-primary(@click='modalActive = false') Stay
           p.control
-            button.button.is-danger.is-pulled-right(@click='$router.push("/#")') leave
-    button.modal-close(@click='modalactive = false')
+            button.button.is-danger.is-pulled-right(@click='$router.push("/#")') Leave
+    button.modal-close(@click='modalActive = false')
   .modal(:class="{ 'is-active': deleteModalActive }")
     .modal-background
     .modal-content
@@ -44,7 +44,7 @@
             button.button.is-primary(@click='deleteModalActive = false') Cancel
           p.control
             button.button.is-danger.is-pulled-right(@click='destroyNote') Delete
-    button.modal-close(@click='modalactive = false')
+    button.modal-close(@click='deleteModalActive = false')
 </template>
 
 <script>
