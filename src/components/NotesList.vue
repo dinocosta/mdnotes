@@ -4,12 +4,12 @@
     .container
       .nav-left
         .nav-item.is-tab
-          h1.title All Notes
+          h1 All Notes
       .nav-right
         a.nav-item.is-pulled-right
           button.button.is-primary(@click='modalActive = true')
             i.fa.fa-plus
-  hr
+  hr.primary-separator
   br
   button.button.is-loading.is-fullwidth(v-show='notes.length == 0', style='border: 0')
   div(v-for='note in orderedNotes')

@@ -15,6 +15,8 @@ export default {
 </script>
 
 <style lang="sass">
+@import 'assets/base'
+
 .app-container
   width: 60%
   @media screen and (max-width: 768px)

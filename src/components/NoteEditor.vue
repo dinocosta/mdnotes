@@ -4,7 +4,7 @@
     .container
       .nav-left
         .nav-item.is-tab
-          h1.title {{ note.title }}
+          h1 {{ note.title }}
       .nav-right
         a.nav-item.is-pulled-right
           button.button.is-outlined(@click='modalActive = editing || $router.push("/#")')
@@ -14,7 +14,7 @@
           button.button.is-primary(@click='saveNote')
             i.fa.fa-fw.fa-pencil(v-show='!editing')
             i.fa.fa-fw.fa-check(v-show='editing')
-  hr
+  hr.primary-separator
   br
   button.button.is-loading.is-fullwidth(v-show='note.timestamp == null', style='border: 0')
   .note-text(v-show='!editing', v-html='mdnote')
@@ -67,6 +67,11 @@ export default {
     window.addEventListener('keydown', (e) => {
       if (e.keyCode === 27 && this.editing) {
         this.saveNote()
+      }
+      if (!this.editing) {
+        if (e.keyCode === 8) {
+          this.$router.push('/#')
+        }
       }
     })
   },
