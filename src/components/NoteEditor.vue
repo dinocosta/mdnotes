@@ -1,12 +1,10 @@
 <template lang="pug">
 .container.app-container
+  h1 {{ note.title }}
   .nav.menu
     .container
       .nav-left
         .nav-item.is-tab
-          h1 {{ note.title }}
-      .nav-right
-        a.nav-item.is-pulled-right
           button.button.is-outlined.is-medium(@click='modalActive = editing || $router.push("/#")')
             i.fa.fa-fw.fa-arrow-left
           button.button.is-danger.is-medium(@click='deleteModalActive = true')
@@ -14,6 +12,7 @@
           button.button.is-primary.is-medium(@click='saveNote')
             i.fa.fa-fw.fa-pencil(v-show='!editing')
             i.fa.fa-fw.fa-check(v-show='editing')
+      .nav-right
   hr.primary-separator
   br
   button.button.is-loading.is-fullwidth(v-show='note.created_at == null', style='border: 0')

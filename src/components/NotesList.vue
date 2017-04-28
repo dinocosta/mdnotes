@@ -7,7 +7,7 @@
           h1 All Notes
       .nav-right
         a.nav-item.is-pulled-right
-          button.button.is-primary(@click='modalActive = true')
+          button.button.is-primary.is-medium(@click='modalActive = true')
             i.fa.fa-plus
   hr.primary-separator
   br
