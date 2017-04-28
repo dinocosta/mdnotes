@@ -7,16 +7,16 @@
           h1 {{ note.title }}
       .nav-right
         a.nav-item.is-pulled-right
-          button.button.is-outlined(@click='modalActive = editing || $router.push("/#")')
+          button.button.is-outlined.is-medium(@click='modalActive = editing || $router.push("/#")')
             i.fa.fa-fw.fa-arrow-left
-          button.button.is-danger(@click='deleteModalActive = true')
+          button.button.is-danger.is-medium(@click='deleteModalActive = true')
             i.fa.fa-fw.fa-trash
-          button.button.is-primary(@click='saveNote')
+          button.button.is-primary.is-medium(@click='saveNote')
             i.fa.fa-fw.fa-pencil(v-show='!editing')
             i.fa.fa-fw.fa-check(v-show='editing')
   hr.primary-separator
   br
-  button.button.is-loading.is-fullwidth(v-show='note.timestamp == null', style='border: 0')
+  button.button.is-loading.is-fullwidth(v-show='note.created_at == null', style='border: 0')
   .note-text(v-show='!editing', v-html='mdnote')
   textarea(v-show='editing', v-model='note.text')
   .modal(:class="{ 'is-active': modalActive }")
@@ -96,7 +96,7 @@ export default {
       if (!this.editing) {
         firebase.database().ref('notes').child(this.$route.params.id).update({
           text: this.note.text,
-          timestamp: firebase.database.ServerValue.TIMESTAMP
+          updated_at: firebase.database.ServerValue.TIMESTAMP
         })
       }
     },
