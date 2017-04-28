@@ -44,20 +44,20 @@ export default {
   },
   methods: {
     createNote () {
-      this.newNote.timestamp = firebase.database.ServerValue.TIMESTAMP
+      this.newNote.created_at = this.newNote.updated_at = firebase.database.ServerValue.TIMESTAMP
       this.$firebaseRefs.notes.push(this.newNote)
       this.newNote.title = ''
-      this.newNote.timestamp = null
+      this.newNote.created_at = this.newNote.updated_at = null
       this.modalActive = false
     },
     editedTime (note) {
-      return timeSince(note.timestamp) + ' ago'
+      return timeSince(note.updated_at) + ' ago'
     }
   },
   computed: {
     orderedNotes: function () {
       return this.notes.sort(function (a, b) {
-        return a.timestamp > b.timestamp
+        return a.updated_at > b.updated_at
       })
     }
   },
@@ -67,7 +67,8 @@ export default {
       newNote: {
         title: '',
         text: '',
-        timestamp: null
+        created_at: null,
+        updated_at: null
       }
     }
   }
