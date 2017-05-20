@@ -1,6 +1,5 @@
 <template lang="pug">
 .container.app-container
-  h1 {{ note.title }}
   .nav.menu
     .container
       .nav-left
@@ -12,7 +11,7 @@
           button.button.is-primary.is-medium(@click='saveNote')
             i.fa.fa-fw.fa-pencil(v-show='!editing')
             i.fa.fa-fw.fa-check(v-show='editing')
-      .nav-right
+  h1 {{ note.title }}
   hr.primary-separator
   br
   button.button.is-loading.is-fullwidth(v-show='note.created_at == null', style='border: 0')
@@ -67,11 +66,9 @@ export default {
       if (e.keyCode === 27 && this.editing) {
         this.saveNote()
       }
-      if (!this.editing) {
-        if (e.keyCode === 8) {
-          this.$router.push('/#')
-        }
-      }
+      // if (this.editing === false && e.keyCode === 8) {
+      //   this.$router.push('/#')
+      // }
     })
   },
   firebase () {
